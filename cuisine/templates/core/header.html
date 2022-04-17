@@ -1,0 +1,118 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicious</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" type="text/css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href="{% static 'css/bootstrap_customized.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link href="{% static 'fonts/font-awesome.min.css' %}" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    
+    <!---------------- Header  ---------------->
+    <header class="header_in clearfix">
+        <div class="container">
+            <div id="logo">
+                <a href="{% url 'index' %}">
+                    <img src="{% static 'icons/logo.png' %}" width="140" height="35" alt="">
+                </a>
+            </div>
+            <div class="layer"></div>
+            <ul id="top_menu">
+                <li>
+					<div class="dropdown dropdown-cart">
+                        <a href="{% url 'cart' %}" class="cart_bt" data-toggle="dropdown"><strong>{{cart_element_no}}</strong></a>
+                    
+                </li>
+            </ul>
+            
+            <!-- /top_menu -->
+            <a href="#0" class="open_close">
+                <i class="icon_menu"></i><span>Menu</span>
+            </a>
+            <nav class="main-menu">
+                <div id="header_menu">
+                    <a href="#0" class="open_close">
+                        <i class="icon_close"></i><span>Menu</span>
+                    </a>
+                    <a href="{url 'index' }"><img src="{% static 'icons/logo.png' %}" width="162" height="35" alt=""></a>
+                </div>
+                <ul>
+                    <li class="submenu">
+                        <a href="{% url 'index' %}" class="show-submenu">Home</a>
+                    </li>
+                    <li class="submenu">
+                        <a href="{% url 'ItemCategory' %}" class="show-submenu">Category</a>
+                    </li>
+                    <!-- <li class="submenu">
+                        <a href="#" class="show-submenu">Contact</a>
+                    </li> -->
+                    <!-- <li class="submenu">
+                        <a href="{% url 'cart' %}" class="show-submenu">Cart</a>
+                    </li> -->
+                    <!-- <li class="submenu">
+                        <a href="#" class="show-submenu">About</a>
+                    </li> -->
+                    <li class="submenu">
+                        {% if request.user.is_authenticated %}
+                        <img src="{{request.user.userdetail.user_image.url}}"
+                            style="height: 20px; width: 20px; border-radius: 10px; margin-right: 3px;" />
+
+                        <strong class="text-uppercase">{{ user.first_name }}</strong>
+                        </a>
+                        <ul>
+                            <li><a href="{% url 'profile' %}">Profile</a></li>
+                            <li><a href="{% url 'order_history' %}">Order</a></li>
+                            <li><a href="{% url 'user_password' %}">Change Password</a></li>
+                            <li><a href="{% url 'logout' %}">Sign Out</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'login' %}" class="show-submenu">Sign in</a>
+                    </li>
+                    <li class="submenu">
+                        <a href="{% url 'signup' %}" class="show-submenu">Sign up</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!---------------- Header End ---------------->
+	
+{% if messages %}
+<div class="alert rounded-0 alert-warning" role="alert">
+   <div class="max-900">
+	  {% for message in messages %}
+	   <div>{{ message | capfirst }}</div>
+	  {% endfor %} 
+	</div>
+</div>
+{% endif %}
+
+	<script>
+		$(document).ready(function () {
+			$('[data-toggle="popover"]').popover();
+		});
+	</script>
+	<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>

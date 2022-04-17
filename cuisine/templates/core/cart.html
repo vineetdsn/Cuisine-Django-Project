@@ -1,0 +1,178 @@
+{% include 'core/header.html' %}
+{% load static %}
+{% block head %}
+<style>
+    .cart td{
+        width:20%;
+    }
+</style>
+{% endblock %}
+{% block myblock %}
+
+{% if items|length == 0 %}
+    <div class="container pt-5">
+        <div class="jumbotron alert alert-danger">
+            &times; Your Shopping Cart is empty !!! 
+        </div>
+    </div>
+{% else %}
+    <div class="container pt-5">
+        <div class="row py-5" style="background:rgba(0,0,0,0.5)">
+            <div class="col-md-12 py-5 my-2 text-light text-center font-weight-bold text-uppercase">
+                {% if status %}
+                    <h1>{{status}}</h1>
+                {% else %}
+                    <h1>My Cart({{items|length}}) </h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="container">
+        <div class="row">
+           <div class="col-md-9 my-5" >
+               <div style="box-shadow:0px 0px 10px gray;">
+                {% if msz %}
+                    <div class="{{cls}} mt-3">{{msz}}</div>
+                {% endif %}
+
+                <table class="table cart">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Product Name</th>
+                            <th>Product Price</th>
+                            <th>Quantity</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in items %}
+                            <tr id="row{{i.id}}">
+                                <td><img src="/media/{{i.item.image}}" style="height:100px;width:150px;"></td>
+                                <td>{{i.item.title}}</td>
+                                <td>&#8377;<span id="pp{{i.id}}">{{i.item.sale_price}}</span></td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <i class="fa fa-plus bg-success p-1 text-light rounded-circle" onclick="change_quan('{{i.id}}','plus')"></i>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="number" value="{{i.quantity}}" class="form-control" id="cart{{i.id}}">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <i class="fa fa-minus bg-danger p-1 text-light rounded-circle" onclick="change_quan('{{i.id}}','minus')"></i>
+                                        </div>
+                                    </div>
+                                     
+                                </td>
+                                <td><button onclick="remove_cart('{{i.id}}')" class="btn btn-outline-danger">&times; Remove</button></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+           </div>
+
+
+           <div class="col-md-3 my-5">
+               <div style="box-shadow:0px 0px 10px gray;">
+               <h2 class="text-center">CHECKOUT</h2>
+            <table class="table">
+                <tr>
+                    <td>Total</td>
+                    <td id="item_total"></td>
+                </tr>
+                
+                <tr>
+                    <td>Quantity</td>
+                    <td id="quantity"></td>
+                </tr>
+               <!--  <tr>
+                    <td>DELIVERY</td>
+                    <td id='dilev'>&#8377;30</td>
+                </tr> -->
+                
+                <tr>
+                    <td>Grand Total</td>
+                    <td id="grand_total"></td>
+                </tr>
+
+            </table>
+           <!--  <div class="p-3">
+                <a href="{% url 'order' %}" class="btn btn-success btn-block btn-sm">PROCEED TO PAY<span id="btamt"></span></a>
+            </div> -->
+        </div>
+
+        <form class="card p-2" action="{% url 'order' %}" method="post">
+            {% csrf_token %}
+                <input  id="btamt" value="{{ total }}" type="hidden" name="total"/>
+                    <button type="submit" class="btn round btn-outline-danger">Proceed to checkout</button>
+            </form>
+
+           </div>
+        </div>
+    </div>
+   <script>
+       function grandTotal(){
+           $.ajax({
+               url:"{% url 'get_cart_data' %}",
+               type:'get',
+               success:function(data){
+                   
+                   save = data.total;
+                   $("#item_total").html("&#8377;"+data.total);
+                    $("#quantity").html(data.quan+" Items");
+                    $("#grand_total").html("&#8377;"+save);
+                    $("#btamt").html("&#8377;"+save);
+
+               }
+           })
+       }
+       grandTotal();
+
+       function change_quan(id,action){
+           let old = $("#cart"+id).val();
+            
+           quan = 0
+           if(action=="plus"){
+               quan += parseInt(old)+1
+           }else{
+               quan += parseInt(old)-1
+           }
+           
+
+
+           $("#cart"+id).val(quan);
+           
+           $.ajax({
+               url:"{% url 'change_quan' %}",
+               type:"get",
+               data:{cid:id, quantity:quan},
+               success:function(data){
+                   grandTotal();
+                 if(data==0){
+                    remove_cart(id);
+                 }
+               }
+           })
+       }
+
+       function remove_cart(id){
+           $.ajax({
+               url:"{% url 'change_quan' %}",
+               data:{delete_cart:id},
+               success:function(data){
+                    grandTotal();
+                    $("#row"+id).hide();
+               }
+
+           })
+       }
+   </script>
+{% endif %}
+{% endif %}
+
+   
+
+{% endblock %}

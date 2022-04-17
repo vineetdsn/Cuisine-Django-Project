@@ -1,0 +1,82 @@
+{% include 'core/header.html' %}
+<!-- section -->
+<div class="section">
+    <!-- container -->
+    <div class="container pt-5 pb-5">
+        <!-- row -->
+        <div class="row">
+
+            <div class="col-md-3"></div>
+
+            <div class="col-md-9">
+                <div class="billing-details">
+                    <div class="section-title">
+                        <h3 class="title">User Profile </h3>
+                    </div>
+                </div>
+                <table class="shopping-cart-table table">
+                    <tr>
+                        <th class="text-left">
+                            <a href="{% url 'user_update' %}" class="primary-btn">Update Profile</a> <br>
+                            <a href="{% url 'user_password' %}" class="primary-btn">Change Password</a>
+                        </th>
+                        <td><img src="{{ request.user.userdetail.user_image.url }}" style="max-width: 200px;
+                                max-height:200px;
+                                margin: 0 auto;
+                                border-radius: 50%;"></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Username</th>
+                        <td class="text-left">{{ user.username}} </td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Name Surname</th>
+                        <td class="text-left">{{ user.first_name}} {{ user.last_name}} </td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Email</th>
+                        <td class="text-left">{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Phone</th>
+                        <td class="text-left">{{ profile.mobile }}</td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <th class="text-left">Gender</th>
+                        <td class="text-left">{{ profile.gender }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Address</th>
+                        <td class="text-left">{{ profile.address }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Pincode</th>
+                        <td class="text-left">{{ profile.pincode }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Landmark</th>
+                        <td class="text-left">{{ profile.landmark }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">City</th>
+                        <td class="text-left">{{ profile.city }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">State</th>
+                        <td class="text-left">{{ profile.state }}</td>
+                    </tr>
+
+                </table>
+            </div>
+
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /section -->
+
+
+{% include 'core/footer.html' %}

@@ -1,0 +1,186 @@
+{% load static %}
+
+    {% include 'core/header.html' %}
+        <!-------------- Search Header -------------->
+        <main style="transform: none;">
+            <div class="page_header element_to_stick">
+                <form action="{% url 'ItemCategory' %}" >
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-7 col-md-7 d-none d-md-block">
+                            <h1>Search Your Favourite Dish...</h1>
+                            <!-- <a href="#0">Change address</a> -->
+                        </div>
+                        <div class="col-xl-4 col-lg-5 col-md-5">
+                            <div class="search_bar_list">
+                                <input type="text" name="qry" class="form-control" placeholder="Dishes....">
+                                {% comment %} <div class="col-md-5">
+                                    <input type="text" name="price" class="form-control" placeholder="Search by Price Less than...">
+                                </div> {% endcomment %}
+                                <a href="#"><button type="submit"><i class="icon_search"></i></button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+            </form>
+            </div>
+            <!-- /page_header -->
+
+            <!-------------- Insert anything Here -------------->
+            <!-- ***************************************************** -->
+        </main>
+        <!-------------- Search Header End -------------->
+        <section class="about-meal">
+            <div class="container">
+                <h1 class="section-heading">About Delicious</h1>
+                <div class="about-meal-wrap flex">
+                    <div class="flex-1">
+                        <img src="{% static '/images/yogurt.png' %}" alt="">
+                    </div>
+                    <div class="flex-1">
+                        <h2>Delicious is a long established fact that a reader will be distracted</h2>
+                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
+                            piece of
+                            classical Latin literature from 45 BC, making it over 2000 years old. Richard
+                            McClintock, a
+                            Latin professor at Hampden Sydney College in Virginia, The standard chunk of Lorem
+                            Ipsum used
+                            since the 1500s is reproduced below for those interested.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="our-services">
+            <div class="container">
+                <h1 class="section-heading">Our services</h1>
+                <div class="card-wrapper flex">
+                    <div class="service-card magic-shadow-sm">
+                        <img class="icon" src="{% static '/icons/transport.svg' %}" alt="">
+                        <h2>Free Home delivery</h2>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        
+                    </div>
+                    <div class="service-card magic-shadow-sm">
+                        <img class="icon" src="{% static '/icons/bag.svg' %}" alt="">
+                        <h2 class="text-primary">ReturnServices</h2>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        
+                    </div>
+                    <div class="service-card magic-shadow-sm">
+                        <img class="icon" src="{% static '/icons/usd.svg' %}" alt="">
+                        <h2>Money Back Guaranted</h2>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <section class="latest-news">
+            <div class="container">
+                <h1 class="section-heading">Lastest News from Blog</h1>
+                <div class="article-wrapper">
+                    <article class="card magic-shadow-sm">
+                        <div>
+                            <img src="{% static '/images/coffee.jpg' %}" alt="">
+                        </div>
+                        <div class="card-content">
+                            <div class="post-meta flex items-center justify-between">
+                                <span>July 03, 2017</span>
+                                <div>
+                                    <span>Posted by <strong>Delicious</strong></span>
+                                    <span class="comment-count">12 Comments</span>
+                                </div>
+                            </div>
+
+                            <h2>Lorem Ipsum is simply dummy text of the printing</h2>
+                            <p>It is a long established fact that a reader will be distracted by the readable
+                                content of a
+                                page when looking at its layout. The point of using Lorem Ipsum is that it has a
+                                more
+                                letters.</p>
+                        </div>
+                    </article>
+                    <article class="card magic-shadow-sm">
+                        <div>
+                            <img src="{% static '/images/donut.jpg' %}" alt="">
+                        </div>
+                        <div class="card-content">
+                            <div class="post-meta flex items-center justify-between">
+                                <span>July 03, 2017</span>
+                                <div>
+                                    <span>Posted by <strong>Delicious</strong></span>
+                                    <span class="comment-count">12 Comments</span>
+                                </div>
+                            </div>
+
+                            <h2>Lorem Ipsum is simply dummy text of the printing</h2>
+                            <p>It is a long established fact that a reader will be distracted by the readable
+                                content of a
+                                page when looking at its layout. The point of using Lorem Ipsum is that it has a
+                                more
+                                letters.</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="text-center btn-wrapper">
+                   
+                </div>
+            </div>
+        </section>
+
+        <section class="subscribe">
+            <div class="container flex items-center">
+                <div>
+                    <img src="{% static '/images/rasberry.png' %}" alt="">
+                </div>
+                <div>
+                    <h1>Subscribe to your newsletter</h1>
+                    <p>Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many
+                        web sites
+                        still in their infancy.</p>
+                    <div class="input-wrap">
+                        <input type="email" placeholder="email@delicious.com">
+                        <button>Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-us flex">
+            <div class="contact-info-wrapper">
+                <h1 class="section-heading">Contact us</h1>
+                <div class="contact-info">
+                    <div>
+                        <div>
+                            <img src="{% static '/icons/phone-2.svg' %}" alt="">
+                            <div>
+                                <span>Call us:</span>
+                                <span>(+84) 123 456 789</span>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="{% static '/icons/bag-2.svg' %}" alt="">
+                            <div>
+                                <span>E-mail ::</span>
+                                <span>support@delicious.com</span>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="{% static '/icons/clock-2.svg' %}" alt="">
+                            <div>
+                                <span>Working Hours:</span>
+                                <span>Mon - Sat (8.00am - 12.00am)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-------------- Main Content End -------------->
+        {% include 'core/footer.html' %}
+        
+        

@@ -1,0 +1,67 @@
+{% load static %}
+{% include 'core/header.html' %}
+
+
+  <!-------------- Sign Up -------------->
+  <div id="register" class="container">
+
+    <figure>
+      <a href="{% url 'index' %}"><img src="{% static 'icons/logo.png' %}" width="140" height="35" alt=""></a>
+    </figure>
+    <div class="access_social">
+      <a href="#0" class="social_bt facebook">Register with Facebook</a>
+      <a href="#0" class="social_bt google">Register with Google</a>
+    </div>
+    <div class="divider"><span>Or</span></div>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <form autocomplete="off" method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        {{form.username}}
+        <i class="icon_pencil-edit"></i>
+      </div>
+      <div class="form-group">
+        {{form.first_name}}
+        <i class="icon_pencil-edit"></i>
+      </div>
+      <div class="form-group">
+        {{form.last_name}}
+        <i class="icon_pencil-edit"></i>
+      </div>
+      <div class="form-group">
+        {{form.email}}
+        <i class="icon_mail_alt"></i>
+      </div>
+      <div class="form-group">
+        <div class="hideShowPassword-wrapper"
+          style="position: relative; display: block; vertical-align: baseline; margin: 0px;">{{form.password1}}<button
+            type="button" role="button" aria-label="Show Password" title="Show Password" tabindex="0"
+            class="my-toggle hideShowPassword-toggle-show" aria-pressed="false"
+            style="position: absolute; right: 0px; top: 50%; margin-top: -15px; display: none;">Show</button></div>
+        <i class="icon_lock_alt"></i>
+      </div>
+      <div class="form-group">
+        <div class="hideShowPassword-wrapper"
+          style="position: relative; display: block; vertical-align: baseline; margin: 0px;">{{form.password2}}<button
+            type="button" role="button" aria-label="Show Password" title="Show Password" tabindex="0"
+            class="my-toggle hideShowPassword-toggle-show" aria-pressed="false"
+            style="position: absolute; right: 0px; top: 50%; margin-top: -15px; display: none;">Show</button></div>
+        <i class="icon_lock_alt"></i>
+      </div>
+      <div id="pass-info" class="clearfix"></div>
+      <button class="btn_1 gradient full-width" type="submit">Sign up</button>
+      <div class="text-center mt-2"><small>Already have an acccount? <strong><a href="{% url 'login' %}">Sign
+              In</a></strong></small>
+      </div>
+    </form>
+
+  </div>
+  <!-------------- Sign Up End -------------->
+  {% include 'core/footer.html' %}
